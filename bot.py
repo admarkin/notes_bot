@@ -2,6 +2,10 @@ import telebot
 import wikipedia
 import sqlite3
 from database import Database
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 wikipedia.set_lang("ru")
 
@@ -82,7 +86,7 @@ class Bot:
         self.bot.polling()
 
 
-bot = Bot("6774391846:AAFuaRogwe2MkG_vjfIG2d1tfqbodGIHWNk")
+bot = Bot(os.getenv('TOKEN'))
 bot.bot.message_handler(commands=['start'])(bot.start)
 bot.bot.message_handler(commands=['register'])(bot.register)
 bot.bot.message_handler(commands=['addnote'])(bot.add_note)
